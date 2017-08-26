@@ -1,20 +1,37 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
-import './App.css';
+import { getBooksFromFakeXHR, addBookToFakeXHR } from '../../lib/books.db.js';
+
 
 class App extends Component {
+  constructor() {
+    super();
+
+
+  }
+
+
+  addBook (book) {
+    addBookToFakeXHR(book)
+    .then( (book) => {
+      this.setState({
+        books: book
+      });
+    });
+  }
+
+  componentDidMount () {
+    getBooksFromFakeXHR()
+    .then( (books) => {
+      this.setState({
+        books: books
+      });
+    });
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
+
+      );
   }
 }
 
