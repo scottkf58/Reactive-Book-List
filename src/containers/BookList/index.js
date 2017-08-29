@@ -11,7 +11,12 @@ const BookList = ({ books, bookFilter }) =>
           book.author.toLowerCase().indexOf(bookFilter.toLowerCase()) >= 0
         );
       })
-      .map( (book, i) => <Book title={book.title} author={book.author} key={i}/>)}
+      .map( (book, index) =>
+        <Book
+          title={book.title}
+          author={book.author}
+          key={index}
+        />)}
   </ul>;
 
 export default BookList;
