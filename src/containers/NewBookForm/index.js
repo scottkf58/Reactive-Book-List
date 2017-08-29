@@ -9,18 +9,18 @@ class NewBookForm extends Component {
       newAuthor: ''
     };
 
-    this.handleChangeTitle = this.handleChangeTitle.bind(this);
-    this.handleChangeAuthor = this.handleChangeAuthor.bind(this);
+    this.handleNewTitle = this.handleNewTitle.bind(this);
+    this.handleNewAuthor = this.handleNewAuthor.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChangeTitle (event) {
+  handleNewTitle (event) {
     this.setState({
       newTitle: event.target.value
     });
   }
 
-  handleChangeAuthor (event) {
+  handleNewAuthor (event) {
     this.setState({
       newAuthor: event.target.value
     });
@@ -46,7 +46,7 @@ class NewBookForm extends Component {
           <input
             type="text"
             placeholder="Title"
-            onChange={ this.handleChangeTitle }
+            onChange={ this.handleNewTitle }
             value={ this.state.newTitle }
           />
         </div>
@@ -54,7 +54,7 @@ class NewBookForm extends Component {
           <input
             type="text"
             placeholder="Author"
-            onChange={ this.handleChangeAuthor }
+            onChange={ this.handleNewAuthor }
             value={ this.state.newAuthor }
           />
         </div>
