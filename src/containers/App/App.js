@@ -3,7 +3,7 @@ import { getBooksFromFakeXHR, addBookToFakeXHR } from '../../lib/books.db.js';
 import AppTitle from '../../components/BookListAppTitle';
 import BookList from '../BookList';
 import NewBookForm from '../NewBookForm/index';
-import BookFilter from '../../components/BookFilterInput';
+import BookFilterInput from '../../components/BookFilterInput';
 
 class App extends Component {
   constructor() {
@@ -11,13 +11,16 @@ class App extends Component {
 
     this.state = {
       books: [],
-      bookfilter: ''
+      bookFilter: ''
     };
+
+    this.setFilter = this.setFilter.bind(this);
+    this.addBook = this.addBook.bind(this);
   }
 
   setFilter (event) {
-    const bookfilter = event.target.value;
-    this.setState({ bookfilter });
+    const bookFilter = event.target.value;
+    this.setState({ bookFilter });
   }
 
   addBook (book) {
@@ -42,7 +45,12 @@ class App extends Component {
     return (
       <div>
       <AppTitle title="Book List" />
-      <BookFilter setFilter={ this.setFilter } />
+      <BookFilterInput setFilter={ this.setFilter } />
+      <BookList
+        books={ this.state.books }
+        bookFilter={ this.state.bookFilter }
+      />
+      <NewBookForm addBook={ this.addBook }/>
       </div>
       );
   }
