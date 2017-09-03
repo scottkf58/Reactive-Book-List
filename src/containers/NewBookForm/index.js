@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { addBook } from '../../actions';
 
 class NewBookForm extends Component {
   constructor(props) {
@@ -12,6 +14,10 @@ class NewBookForm extends Component {
     this.handleNewTitle = this.handleNewTitle.bind(this);
     this.handleNewAuthor = this.handleNewAuthor.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount () {
+    console.log(this.props);
   }
 
   handleNewTitle (event) {
@@ -42,6 +48,7 @@ class NewBookForm extends Component {
   render() {
     return (
       <form onSubmit={ this.handleSubmit }>
+        <div>Add New Book</div>
         <div>
           <input
             type="text"
@@ -66,4 +73,18 @@ class NewBookForm extends Component {
   }
 }
 
-export default NewBookForm;
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addBook: (book) => {
+      dispatch(addBook(book));
+    }
+  }
+}
+
+const ConnectedNewBookForm = connect(
+  null,
+  mapDispatchToProps
+)(NewBookForm);
+
+export default ConnectedNewBookForm;
